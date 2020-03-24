@@ -1,2 +1,7 @@
 server:
     port: localhost:10000
+
+http:
+    auth:
+        key: user
+        secret: password
