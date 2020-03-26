@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/fitrah-firdaus/notes/db"
+	"github.com/fitrah-firdaus/notes/notes/repository"
 	"os"
 
 	"github.com/fitrah-firdaus/notes/config"
@@ -17,5 +19,10 @@ func main() {
 	}
 	flag.Parse()
 	config.Init(*environment)
+	db.Init()
+
+	// init notes repository
+	repository.NewMysqlNotesRepository(db.GetDB())
+
 	server.Init()
 }
