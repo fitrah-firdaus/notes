@@ -5,3 +5,10 @@ http:
     auth:
         key: user
         secret: password
+
+db:
+    mysql:
+        user: root
+        password: rootpass
+        hostname: localhost
+        dbname: notes

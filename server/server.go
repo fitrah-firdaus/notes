@@ -3,7 +3,7 @@ package server
 import "github.com/fitrah-firdaus/notes/config"
 
 func Init() {
-	config := config.GetConfig()
+	conf := config.GetConfig()
 	r := NewRouter()
-	r.Run(config.GetString("server.port"))
+	r.Run(conf.GetString("server.port"))
 }
