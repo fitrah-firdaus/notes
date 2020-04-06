@@ -1,9 +1,10 @@
-package repository
+package repository_test
 
 import (
 	"github.com/fitrah-firdaus/notes/models"
 	"github.com/fitrah-firdaus/notes/notes"
-	"github.com/jinzhu/gorm"
+	"github.com/fitrah-firdaus/notes/notes/repository"
+	"github.com/fitrah-firdaus/notes/notes/testhelper"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -12,9 +13,10 @@ import (
 var notesRepository notes.Repository
 
 func init() {
-	db, _ := gorm.Open("mysql", "root:rootpass@(localhost)/notes?charset=utf8&parseTime=True&loc=Local")
+	db, _ := testhelper.OpenDB()
+	db.DropTable(&models.Notes{})
 	db.AutoMigrate(&models.Notes{})
-	notesRepository = NewMysqlNotesRepository(db)
+	notesRepository = repository.NewMysqlNotesRepository(db)
 }
 
 func TestSaveNotes(t *testing.T) {
